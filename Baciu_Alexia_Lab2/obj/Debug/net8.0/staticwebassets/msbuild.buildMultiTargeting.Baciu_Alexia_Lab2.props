@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/Baciu_Alexia_Lab2.props" />
+</Project>
