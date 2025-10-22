@@ -21,6 +21,8 @@ namespace Baciu_Alexia_Lab2.Models
         public int? PublisherID { get; set; }
         public Publisher? Publisher { get; set; }
         
+        public ICollection<BookCategory>? BookCategories { get; set; }
+        
         //relatia lui book cu author
         public int? AuthorID { get; set; }
         public Author? Author { get; set; }

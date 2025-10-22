@@ -7,11 +7,10 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Baciu_Alexia_Lab2.Data;
 using Baciu_Alexia_Lab2.Models;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace Baciu_Alexia_Lab2.Pages.Books
+namespace Baciu_Alexia_Lab2.Pages.Categories
 {
-    public class DetailsModel : BookCategoriesPageModel
+    public class DetailsModel : PageModel
     {
         private readonly Baciu_Alexia_Lab2.Data.Baciu_Alexia_Lab2Context _context;
 
@@ -19,8 +18,8 @@ namespace Baciu_Alexia_Lab2.Pages.Books
         {
             _context = context;
         }
-        [BindProperty]
-        public Models.Book Book { get; set; } = default!;
+
+        public Category Category { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,19 +28,15 @@ namespace Baciu_Alexia_Lab2.Pages.Books
                 return NotFound();
             }
 
-            Book = await _context.Book
-                .Include(b=>b.Author)
-                .Include(b => b.Publisher)
-                .Include(b => b.BookCategories)
-                .ThenInclude(b => b.Category)
-                .AsNoTracking()
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (Book == null)
+            var category = await _context.Category.FirstOrDefaultAsync(m => m.ID == id);
+            if (category == null)
             {
                 return NotFound();
             }
-            PopulateAssignedCategoryData(_context, Book);
-            
+            else
+            {
+                Category = category;
+            }
             return Page();
         }
     }

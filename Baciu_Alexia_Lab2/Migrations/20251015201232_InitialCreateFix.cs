@@ -57,7 +57,7 @@ namespace Baciu_Alexia_Lab2.Migrations
                         name: "FK_Book_Authors_AuthorID",
                         column: x => x.AuthorID,
                         principalTable: "Authors",
-                        principalColumn: "Id");
+                        principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_Book_Publisher_PublisherID",
                         column: x => x.PublisherID,

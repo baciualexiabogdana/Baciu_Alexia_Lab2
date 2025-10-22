@@ -566,3 +566,4 @@
 /Users/baciualexiabogdana/RiderProjects/Baciu_Alexia_Lab2/Baciu_Alexia_Lab2/obj/Debug/net8.0/Baciu_Alexia_Lab2.pdb
 /Users/baciualexiabogdana/RiderProjects/Baciu_Alexia_Lab2/Baciu_Alexia_Lab2/obj/Debug/net8.0/Baciu_Alexia_Lab2.genruntimeconfig.cache
 /Users/baciualexiabogdana/RiderProjects/Baciu_Alexia_Lab2/Baciu_Alexia_Lab2/obj/Debug/net8.0/ref/Baciu_Alexia_Lab2.dll
+/Users/baciualexiabogdana/RiderProjects/Baciu_Alexia_Lab2/Baciu_Alexia_Lab2/obj/Debug/net8.0/Baciu_Alexia_Lab2.sourcelink.json
