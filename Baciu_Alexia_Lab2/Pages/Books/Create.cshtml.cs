@@ -26,23 +26,19 @@ namespace Baciu_Alexia_Lab2.Pages.Books
                 x.Id,
                 FullName = x.LastName + " " + x.FirstName
             });
-            
+
             ViewData["PublisherID"] = new SelectList(_context.Set<Publisher>(), "ID", "PublisherName");
             ViewData["AuthorID"] = new SelectList(_context.Set<Models.Author>(), "Id", "FullName");
-            
+
             var book = new Book();
             book.BookCategories = new List<BookCategory>();
             PopulateAssignedCategoryData(_context, book);
             return Page();
-            
-            
         }
 
 
+        [BindProperty] public Book Book { get; set; }
 
-        [BindProperty]
-        public Book Book { get; set; }
-        
         public async Task<IActionResult> OnPostAsync(string[] selectedCategories)
         {
             var newBook = new Book();
@@ -58,19 +54,8 @@ namespace Baciu_Alexia_Lab2.Pages.Books
                     newBook.BookCategories.Add(catToAdd);
                 }
             }
-            Book.BookCategories = newBook.BookCategories;
-            _context.Book.Add(Book);
-            await _context.SaveChangesAsync();
-            return RedirectToPage("./Index");
-        }
-        
-        public async Task<IActionResult> OnPostAsync()
-        {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
 
+            Book.BookCategories = newBook.BookCategories;
             _context.Book.Add(Book);
             await _context.SaveChangesAsync();
             return RedirectToPage("./Index");

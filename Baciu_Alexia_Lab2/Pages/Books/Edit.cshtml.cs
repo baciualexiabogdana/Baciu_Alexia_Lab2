@@ -20,8 +20,7 @@ namespace Baciu_Alexia_Lab2.Pages.Books
             _context = context;
         }
 
-        [BindProperty]
-        public Models.Book Book { get; set; } = default!;
+        [BindProperty] public Models.Book Book { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,6 +28,7 @@ namespace Baciu_Alexia_Lab2.Pages.Books
             {
                 return NotFound();
             }
+
             Book = await _context.Book
                 .Include(b => b.Publisher)
                 .Include(b => b.BookCategories)
@@ -39,6 +39,7 @@ namespace Baciu_Alexia_Lab2.Pages.Books
             {
                 return NotFound();
             }
+
             PopulateAssignedCategoryData(_context, Book);
 
             var authorList = _context.Authors.Select(x => new
@@ -52,7 +53,7 @@ namespace Baciu_Alexia_Lab2.Pages.Books
             return Page();
         }
 
-        
+
         public async Task<IActionResult> OnPostAsync(int? id, string[]
             selectedCategories)
         {
@@ -74,18 +75,23 @@ namespace Baciu_Alexia_Lab2.Pages.Books
             if (await TryUpdateModelAsync<Book>(
                     bookToUpdate,
                     "Book",
-                    i => i.Title, i => i.Author,
-                    i => i.Price, i => i.PublishingDate, i => i.PublisherID))
+                    i => i.Title,
+                    i => i.AuthorID,
+                    i => i.Price,
+                    i => i.PublishingDate,
+                    i => i.PublisherID))
             {
                 UpdateBookCategories(_context, selectedCategories, bookToUpdate);
                 await _context.SaveChangesAsync();
                 return RedirectToPage("./Index");
             }
-            
+
+
             UpdateBookCategories(_context, selectedCategories, bookToUpdate);
             PopulateAssignedCategoryData(_context, bookToUpdate);
             return Page();
         }
+
         private bool BookExists(int id)
         {
             return _context.Book.Any(e => e.ID == id);
