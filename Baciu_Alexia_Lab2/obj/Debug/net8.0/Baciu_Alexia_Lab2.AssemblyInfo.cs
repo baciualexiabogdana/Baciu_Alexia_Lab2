@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Baciu_Alexia_Lab2")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2f7aab5e4a1a703047e4c63d0ddb501e9754bd66")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fff97919149ff5dc2446a6ddb241fc4e48dc37a3")]
 [assembly: System.Reflection.AssemblyProductAttribute("Baciu_Alexia_Lab2")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Baciu_Alexia_Lab2")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
