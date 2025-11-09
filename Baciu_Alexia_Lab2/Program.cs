@@ -1,12 +1,23 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Baciu_Alexia_Lab2.Data;
+using Microsoft.AspNetCore.Identity;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddRazorPages();
+
 builder.Services.AddDbContext<Baciu_Alexia_Lab2Context>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("Baciu_Alexia_Lab2Context") ?? throw new InvalidOperationException("Connection string 'Baciu_Alexia_Lab2Context' not found.")));
+    options.UseSqlite(builder.Configuration.GetConnectionString("Baciu_Alexia_Lab2Context") ??
+                      throw new InvalidOperationException("Connection string 'Baciu_Alexia_Lab2Context' not found.")));
+
+builder.Services.AddDbContext<LibraryIdentityContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("LibraryIdentityContext") ??
+                      throw new InvalidOperationException("Connection string 'LibraryIdentityContext' not found.")));
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+        options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<LibraryIdentityContext>();
 
 var app = builder.Build();
 
@@ -14,7 +25,6 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
